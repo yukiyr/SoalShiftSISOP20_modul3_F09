@@ -109,8 +109,5 @@ int main()
 		printf("\n");
 	}
 
-	//shmdt(hasil[][]);
-        //shmctl(shmid, IPC_RMID, NULL);
-
 	return 0;
 }
