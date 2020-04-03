@@ -482,6 +482,14 @@ int main(int argc, char const *argv[]) {
 
 **Screenshot**
 
+![Screenshoot](Foto/modul32a.png)
+
+![Screenshoot](Foto/modul32b.png)
+
+![Screenshoot](Foto/modul32c.png)
+
+![Screenshoot](Foto/modul32d.png)
+
 **Soal**
 
 3.	Buatlah sebuah program dari C untuk mengkategorikan file. Program ini akan memindahkan file sesuai ekstensinya (tidak case sensitive. JPG dan jpg adalah sama) ke dalam folder sesuai ekstensinya yang folder hasilnya terdapat di working directory ketika program kategori tersebut dijalankan.
