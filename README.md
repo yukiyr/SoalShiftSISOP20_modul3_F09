@@ -211,18 +211,6 @@ SERVER SIDE
 
 **Screenshot**
 
-2. a
-
-
-
-2. b
-
-
-
-2. c
-
-
-
 **Soal**
 
 3.	Buatlah sebuah program dari C untuk mengkategorikan file. Program ini akan memindahkan file sesuai ekstensinya (tidak case sensitive. JPG dan jpg adalah sama) ke dalam folder sesuai ekstensinya yang folder hasilnya terdapat di working directory ketika program kategori tersebut dijalankan.
@@ -273,14 +261,6 @@ $ ./kategori -d /path/to/directory/
 **Jawaban :**
 
 **Cara Pengerjaan**
-
-**3a**
-
-**3a revisi**
-
-**3b**
-
-**3c**
 
 **Kendala Yang Dialami**
 
