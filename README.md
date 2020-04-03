@@ -33,66 +33,94 @@ Surabaya
 
 **Soal**
 
-1.	Whits adalah seorang mahasiswa teknik informatika. Dia mendapatkan tugas praktikum untuk membuat laporan berdasarkan data yang ada pada file “Sample-Superstore.csv”. Namun dia tidak dapat menyelesaikan tugas tersebut. Laporan yang diminta berupa :
+1.	Poke*ZONE adalah sebuah game berbasis text terminal mirip dengan Pokemon GO. Ketentuan permainan sebagai berikut:
 
-a.	Tentukan wilayah bagian (region) mana yang memiliki keuntungan (profit) paling sedikit
+a. Menggunakan IPC-shared memory, thread, fork-exec.
 
-b.	Tampilkan 2 negara bagian (state) yang memiliki keuntungan (profit) paling sedikit berdasarkan hasil poin a
+b. Kalian bebas berkreasi dengan game ini asal tidak konflik dengan requirements yang ada. (Contoh: memberi nama trainer, memberi notifikasi kalau barang di shop sudah penuh, dan lain-lain).
 
-c.	Tampilkan 10 produk (product name) yang memiliki keuntungan (profit) paling sedikit berdasarkan 2 negara bagian (state) hasil poin b
+c. Terdapat 2 code yaitu soal2_traizone.c dan soal2_pokezone.c.
 
-Whits memohon kepada kalian yang sudah jago mengolah data untuk mengerjakan laporan tersebut.
+d. soal2_traizone.c mengandung fitur:
 
-*Gunakan Awk dan Command pendukung
+i. Normal Mode (3 Menu)
+
+1. Cari Pokemon
+
+a. Jika diaktifkan maka setiap 10 detik akan memiliki 60% chance untuk menemui pokemon bertipe normal, rare, legendary dengan encounter rate sesuai pada tabel di bawah (Gunakan Thread).
+
+b. Cari pokemon hanya mengatur dia menemukan pokemon atau tidak. Untuk tipe pokemon dan pokemon tersebut shiny atau tidak diatur oleh soal2_pokezone.c.
+
+c. Opsi “Cari Pokemon” akan berubah jadi “Berhenti Mencari” ketika state mencari pokemon aktif.
+
+d. State mencari pokemon hanya bisa dihentikan ketika pokemon sudah ditemukan atau trainer memilih untuk berhenti pada menu.
+
+e. Jika menemui pokemon maka akan masuk ke Capture Mode.
+
+f. Untuk mempermudah boleh menambah menu go to capture mode untuk berpindah dari mode normal ke mode capture setelah menemukan pokemon dari thread Cari Pokemon.
+
+
+2. Pokedex
+
+a. Melihat list pokemon beserta Affection Point (AP) yang dimiliki.
+
+b. Maksimal 7 pokemon yang dimiliki.
+
+c. Jika menangkap lebih dari 7 maka pokemon yang baru saja ditangkap akan langsung dilepas dan mendapatkan pokedollar sesuai dengan tabel dibawah.
+
+d. Setiap pokemon yang dimiliki, mempunyai Affection Point (AP) dengan initial value 100 dan akan terus berkurang sebanyak -10 AP/10 detik dimulai dari waktu ditangkap (Gunakan Thread).
+
+e. Jika AP bernilai 0, maka pokemon tersebut memiliki 90% chance untuk lepas tanpa memberikan pokedollar ke trainer atau 10% chance untuk reset AP menjadi 50 AP.
+
+f. AP tidak akan berkurang jika dalam Capture Mode.
+
+g. Di Pokedex trainer juga bisa melepas pokemon yang ditangkap dan mendapat pokedollar sesuai dengan
+tabel dibawah.
+
+h. Bisa memberi berry ke semua pokemon yang dimiliki untuk meningkatkan AP sebesar +10 (1 berry untuk semua pokemon yang ada di pokedex).
+
+
+3. Shop
+
+a. Membeli item dari soal2_pokezone.
+
+b. Maksimal masing-masing item yang dapat dibeli dan dipunya oleh trainer adalah 99.
+
+
+ii. Capture Mode (3 Menu)
+
+1. Tangkap → Menangkap menggunakan pokeball. Berhasil ditangkap maupun tidak, pokeball di inventory -1 setiap
+digunakan.
+
+2. Item → Menggunakan item sesuai dengan tabel item dibawah (hanya lullaby powder).
+
+3. Keluar → Keluar dari Capture Mode menuju Normal Mode.
+
+● Pokemon tersebut memiliki peluang untuk lari dari trainer sesuai dengan persentase escape rate pada tabel dibawah
+(gunakan thread).
+
+e. soal2_pokezone.c mengandung fitur:
+
+i. Shutdown game → Mematikan program soal2_pokezone dan soal2_traizone (Gunakan fork-exec).
+
+ii. Jual Item (Gunakan Thread)
+
+1. Stock awal semua item adalah 100.
+
+2. Masing-masing item akan bertambah +10 item/10 detik.
+
+3. Maximum item yang dalam shop adalah 200.
+
+4. List item ada pada tabel dibawah.
 
 **Jawaban :**
 
 **Cara Pengerjaan**
 
-1. a
-
-```
-awk -F, 'NR > 1 {arr[$13]+=$21} END {for (i in arr) {print arr[i],i}}' Sample-Superstore.csv > output.sh
-awk -F' ' '{printf "%-12s %-12s\n", $1, $2}' output.sh | LC_ALL=C sort -g > output1.sh
-awk -F, '{print $1 " " $2} NR==1 {exit}' output1.sh
-```
-
-1. b
-
-```
-awk -F, 'NR > 1 && $13 == "Central" {arr[$11]+=$21} END {for (i in arr) {print arr[i],i}}' Sample-Superstore.csv > output3.sh
-awk -F' ' '{printf "%-12s %-12s %-12s\n", $1, $2, $3}' output3.sh | LC_ALL=C sort -g > output4.sh
-awk -F, '{print $1 $2 $3} NR==2 {exit}' output4.sh
-```
-1. c
-
-```
-awk -F, 'NR > 1 && $11 == "Texas" {arr[$17]+=$21} END {for (i in arr) {print arr[i],i}}' Sample-Superstore.csv > output5.sh
-awk -F' ' '{ print }' output5.sh | LC_ALL=C sort -g > output6.sh
-awk -F, '{ print } NR==10 {exit}' output6.sh
-
-awk -F, 'NR > 1 && $11 == "Illinois" {arr[$17]+=$21} END {for (i in arr) {print arr[i],i}}' Sample-Superstore.csv > output7.sh
-awk -F' ' '{ print }' output7.sh | LC_ALL=C sort -g > output8.sh
-awk -F, '{ print } NR==10 {exit}' output8.sh
-```
-
 **Kendala Yang Dialami**
-
--
 
 **Screenshot**
 
-1. a
-
-![Screenshot1a](https://1.bp.blogspot.com/-Vs33eY70f4Y/Xk9lTyPdvqI/AAAAAAAAAxE/2rPfe6E4PBoFY0LbXzSEP3Uv7yHPV8UoQCLcBGAsYHQ/s1600/Screenshot%2Bfrom%2B2020-02-21%2B11-54-11.png)
-
-1. b
-
-![Screenshot1b](https://1.bp.blogspot.com/-fDGEBuQvgZY/Xk9lYkYUIKI/AAAAAAAAAxI/I9RZlDJ0haM04Cywd1qPQ6Dgh-1N4gCqgCLcBGAsYHQ/s1600/Screenshot%2Bfrom%2B2020-02-21%2B11-54-20.png)
-
-1. c
-
-![Screenshot1c](https://1.bp.blogspot.com/-3299B5NwpKk/Xk9ldsHvhfI/AAAAAAAAAxM/411iDkKOYFYF3IDlrWebX3NC4CcFDM3ngCLcBGAsYHQ/s1600/Screenshot%2Bfrom%2B2020-02-21%2B11-54-28.png)
 
 **Soal**
 
