@@ -570,3 +570,12 @@ int main(int argc, char **argv)
 -
 
 **Screenshot**
+
+4.a
+![Screenshoot](Foto/modul34a.png)
+
+4.b
+![Screenshoot](Foto/modul34b.png)
+
+4.c
+![Screenshoot](Foto/modul34c.png)
