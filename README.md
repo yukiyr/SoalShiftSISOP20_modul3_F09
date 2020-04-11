@@ -131,10 +131,15 @@ iii. Menyediakan Random Pokemon (Gunakan Thread)
 
 **Cara Pengerjaan**
 
+-
+
 **Kendala Yang Dialami**
+
+Belum sempat mengerjakan
 
 **Screenshot**
 
+-
 
 **Soal**
 
