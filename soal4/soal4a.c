@@ -95,9 +95,10 @@ int main()
 		{
 			hasil[i][j]=0;
 		}
-		pthread_create(&tid3, NULL, multiply_matrix, NULL);
-		pthread_join(tid3,NULL);
 	}
+	
+	pthread_create(&tid3, NULL, multiply_matrix, NULL);
+	pthread_join(tid3,NULL);
 
 	printf("Hasil Perkalian\n");
 	for(i=0;i<baris1;i++)
